@@ -9,6 +9,15 @@ var cords2x
 var cords2y
 var lineW = 1
 var rbgcolor = document.getElementById("rgbcol").value
+var alfa = 255
+function changeAlfa1(){
+  alfa = document.getElementById("alfa1").value
+  document.getElementById("alfa2").value = alfa
+}
+function changeAlfa2(){
+  alfa = document.getElementById("alfa2").value
+  document.getElementById("alfa1").value = alfa
+}
 function changeColor(){
   rbgcolor = document.getElementById("rgbcol").value
 }
@@ -28,6 +37,7 @@ function lineDown(){
   ctx.beginPath();
   ctx.lineWidth = lineW
   ctx.strokeStyle = rbgcolor
+  ctx.globalAlpha = alfa
   cords1x =  cordsx
   cords1y =  cordsy
   ctx.moveTo(cords1x, cords1y);
@@ -48,6 +58,7 @@ function activeLine(){
 function squareDown(){
   ctx.beginPath();
   ctx.fillStyle = rbgcolor
+  ctx.globalAlpha = alfa
   cords1x =  cordsx
   cords1y =  cordsy
 }

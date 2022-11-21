@@ -39,8 +39,8 @@ function changeWidth(){
 }
 function updateDisplay(event) {
   if(board.width>window.innerWidth){
-  cordsx = event.pageX*(board.width/window.innerWidth);
-  cordsy = (event.pageY)*(board.width/window.innerWidth);
+  cordsx = event.pageX*(board.width/(window.innerWidth*0.99));
+  cordsy = (event.pageY)*(board.width/(window.innerWidth*0.99));
   }else{
     cordsx = event.pageX
     cordsy = event.pageY
@@ -122,13 +122,13 @@ function pencilDown(){
   ctx.globalAlpha = alfabg
   cords1x =  cordsx
   cords1y =  cordsy
-  ctx.fillRect(cords1x-lineW, cords1y+lineW, lineW, lineW);
+  ctx.fillRect(cords1x-(lineW/2), cords1y-(lineW/2), lineW, lineW);
   board.setAttribute("onmousemove", "pencilMove()")
 }
 function pencilMove(){
   cords1x =  cordsx
   cords1y =  cordsy
-  ctx.fillRect(cords1x-lineW, cords1y+lineW, lineW, lineW);
+  ctx.fillRect(cords1x-(lineW/2), cords1y-(lineW/2), lineW, lineW);
 }
 function pencilUp(){
   board.setAttribute("onmousemove", "")

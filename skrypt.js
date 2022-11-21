@@ -8,8 +8,8 @@ var cords1y
 var cords2x
 var cords2y
 var lineW = 1
-var rbgcolor = "#ffffff"
-var rbgcolorbg = "#ffffff"
+var rbgcolor = "#000000"
+var rbgcolorbg = "#000000"
 var alfa = 1
 var alfabg = 1
 function changeAlfa1(){
@@ -113,6 +113,57 @@ function activeCircle(){
   activeTool = "circle"
   board.setAttribute("onmousedown", "circleDown()")
   board.setAttribute("onmouseup", "circleUp()")
+  board.setAttribute("onmousemove", "")
+  board.setAttribute("onclick", "")
+}
+function pencilDown(){
+  ctx.beginPath();
+  ctx.fillStyle = rbgcolorbg
+  ctx.globalAlpha = alfabg
+  cords1x =  cordsx
+  cords1y =  cordsy
+  ctx.fillRect(cords1x-lineW, cords1y+lineW, lineW, lineW);
+  board.setAttribute("onmousemove", "pencilMove()")
+}
+function pencilMove(){
+  cords1x =  cordsx
+  cords1y =  cordsy
+  ctx.fillRect(cords1x-lineW, cords1y+lineW, lineW, lineW);
+}
+function pencilUp(){
+  board.setAttribute("onmousemove", "")
+}
+function activePencil(){
+  activeTool = "pencil"
+  board.setAttribute("onmousedown", "pencilDown()")
+  board.setAttribute("onmouseup", "pencilUp()")
+  board.setAttribute("onmousemove", "")
+  board.setAttribute("onclick", "")
+}
+function brushDown(){
+  ctx.beginPath();
+  ctx.fillStyle = rbgcolorbg
+  ctx.globalAlpha = alfabg
+  cords1x =  cordsx
+  cords1y =  cordsy
+  ctx.arc(cords1x, cords1y, lineW/2, 0, 2*Math.PI);
+  ctx.fill()
+  board.setAttribute("onmousemove", "brushMove()")
+}
+function brushMove(){
+  ctx.beginPath();
+  cords1x =  cordsx
+  cords1y =  cordsy
+  ctx.arc(cords1x, cords1y, lineW/2, 0, 2*Math.PI);
+  ctx.fill()
+}
+function brushUp(){
+  board.setAttribute("onmousemove", "")
+}
+function activeBrush(){
+  activeTool = "brush"
+  board.setAttribute("onmousedown", "brushDown()")
+  board.setAttribute("onmouseup", "brushUp()")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "")
 }

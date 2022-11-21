@@ -12,6 +12,18 @@ var rbgcolor = "#000000"
 var rbgcolorbg = "#000000"
 var alfa = 1
 var alfabg = 1
+var fsize = 12
+var fontfam = "Helveltica"
+var texttowrite
+function changeFsize(){
+  fsize = document.getElementById("fsize").value
+}
+function changeFontFam(){
+  fontfam = document.getElementById("fontfam").value
+}
+function changeTextToWrite(){
+  texttowrite = document.getElementById("texttowrite").value
+}
 function changeAlfa1(){
   alfa = document.getElementById("alfa1").value
   document.getElementById("alfa2").value = alfa
@@ -166,6 +178,26 @@ function activeBrush(){
   board.setAttribute("onmouseup", "brushUp()")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "")
+}
+function textClick(){
+  ctx.beginPath();
+  cords1x =  cordsx
+  cords1y =  cordsy
+  ctx.lineWidth = lineW
+  ctx.strokeStyle = rbgcolor
+  ctx.fillStyle = rbgcolorbg
+  ctx.globalAlpha = alfabg
+  ctx.font = fsize+"px "+fontfam;
+  ctx.fillText(texttowrite, cords1x, cords1y+(fsize/2));
+  ctx.globalAlpha = alfa
+  ctx.strokeText(texttowrite, cords1x, cords1y+(fsize/2));
+}
+function activeText(){
+  activeTool = "brush"
+  board.setAttribute("onmousedown", "")
+  board.setAttribute("onmouseup", "")
+  board.setAttribute("onmousemove", "")
+  board.setAttribute("onclick", "textClick()")
 }
 document.getElementById('inp').onchange = function(e) {
   var img = new Image();

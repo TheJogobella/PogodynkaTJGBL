@@ -15,6 +15,7 @@ var alfabg = 1
 var fsize = 12
 var fontfam = "Helveltica"
 var texttowrite
+var imgload
 function changeFsize(){
   fsize = document.getElementById("fsize").value
 }
@@ -198,6 +199,30 @@ function activeText(){
   board.setAttribute("onmouseup", "")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "textClick()")
+}
+function imageDown(){
+  imgload= new Image()
+  imgload.src = URL.createObjectURL(document.getElementById('imagesend').files[0]);
+  cords1x =  cordsx
+  cords1y =  cordsy
+}
+function imageUp(){
+  cords2x =  cordsx
+  cords2y =  cordsy
+  if(!document.getElementById('proporcje').checked == true){
+    ctx.drawImage(imgload, 0,0, imgload.width, imgload.height, cords1x, cords1y, cords2x-cords1x, cords2y-cords1y)
+  }else if(document.getElementById('proporcje').checked==true && document.getElementById('wektor1').checked==true){
+    ctx.drawImage(imgload, 0,0, imgload.width, imgload.height, cords1x, cords1y, imgload.width*((cords2y-cords1y)/imgload.height), cords2y-cords1y)
+  }else if(document.getElementById('proporcje').checked==true && document.getElementById('wektor2').checked==true){
+    ctx.drawImage(imgload, 0,0, imgload.width, imgload.height, cords1x, cords1y, cords2x-cords1x, imgload.height*((cords2x-cords1x)/imgload.width))
+  }
+}
+function activeImage(){
+  activeTool = "image"
+  board.setAttribute("onmousedown", "imageDown()")
+  board.setAttribute("onmouseup", "imageUp()")
+  board.setAttribute("onmousemove", "")
+  board.setAttribute("onclick", "")
 }
 document.getElementById('inp').onchange = function(e) {
   var img = new Image();

@@ -12,7 +12,7 @@
     height: 100%;
     text-align: center;
     color: white;
-    display: fixed;
+    display: flex;
 }
 .toolbar svg{
     margin: 10vh auto;

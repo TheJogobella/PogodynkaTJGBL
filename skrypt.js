@@ -16,6 +16,20 @@ var fsize = 12
 var fontfam = "Helveltica"
 var texttowrite
 var imgload
+var activeid = "hidden"
+function hideToolBar(){
+  document.getElementsByClassName("toolbar")[0].setAttribute("class", "toolbar animate__animated animate__fadeOutDownBig")
+  document.getElementsByClassName("baropen")[0].setAttribute("class", "baropen animate__animated animate__fadeInUp")
+}
+function showToolBar(){
+  document.getElementsByClassName("toolbar")[0].setAttribute("class", "toolbar animate__animated animate__fadeInUpBig")
+  document.getElementsByClassName("baropen")[0].setAttribute("class", "baropen animate__animated animate__fadeOutDown")
+}
+function changeActiveColor(){
+  document.getElementById(activeid).style.color = "white"
+  activeid = document.getElementById(activeTool+"svg").id
+  document.getElementById(activeid).style.color = "darkslategray"
+}
 function changeFsize(){
   fsize = document.getElementById("fsize").value
 }
@@ -76,6 +90,7 @@ function lineUp(){
 }
 function activeLine(){
   activeTool = "line"
+  changeActiveColor()
   board.setAttribute("onmousedown", "lineDown()")
   board.setAttribute("onmouseup", "lineUp()")
   board.setAttribute("onmousemove", "")
@@ -100,6 +115,7 @@ function squareUp(){
 }
 function activeSquare(){
   activeTool = "square"
+  changeActiveColor()
   board.setAttribute("onmousedown", "squareDown()")
   board.setAttribute("onmouseup", "squareUp()")
   board.setAttribute("onmousemove", "")
@@ -124,6 +140,7 @@ function circleUp(){
 }
 function activeCircle(){
   activeTool = "circle"
+  changeActiveColor()
   board.setAttribute("onmousedown", "circleDown()")
   board.setAttribute("onmouseup", "circleUp()")
   board.setAttribute("onmousemove", "")
@@ -148,6 +165,7 @@ function pencilUp(){
 }
 function activePencil(){
   activeTool = "pencil"
+  changeActiveColor()
   board.setAttribute("onmousedown", "pencilDown()")
   board.setAttribute("onmouseup", "pencilUp()")
   board.setAttribute("onmousemove", "")
@@ -175,6 +193,7 @@ function brushUp(){
 }
 function activeBrush(){
   activeTool = "brush"
+  changeActiveColor()
   board.setAttribute("onmousedown", "brushDown()")
   board.setAttribute("onmouseup", "brushUp()")
   board.setAttribute("onmousemove", "")
@@ -194,7 +213,8 @@ function textClick(){
   ctx.strokeText(texttowrite, cords1x, cords1y+(fsize/2));
 }
 function activeText(){
-  activeTool = "brush"
+  activeTool = "font"
+  changeActiveColor()
   board.setAttribute("onmousedown", "")
   board.setAttribute("onmouseup", "")
   board.setAttribute("onmousemove", "")
@@ -219,10 +239,19 @@ function imageUp(){
 }
 function activeImage(){
   activeTool = "image"
+  changeActiveColor()
   board.setAttribute("onmousedown", "imageDown()")
   board.setAttribute("onmouseup", "imageUp()")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "")
+}
+function activeWeather(){
+  activeTool = "weather"
+  changeActiveColor()
+  board.setAttribute("onmousedown", "")
+  board.setAttribute("onmouseup", "")
+  board.setAttribute("onmousemove", "")
+  board.setAttribute("onclick", "weatherClick()")
 }
 document.getElementById('inp').onchange = function(e) {
   var img = new Image();

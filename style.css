@@ -37,3 +37,18 @@
     text-align: center;
     color: white;
 }
+.weather-dropdown{
+    position: absolute;
+    display: none;
+    height: 150px;
+    width: 100px;
+    overflow-y: scroll;
+    flex-flow: column;
+    background-color:dimgray;
+}
+.weather-dropdown img{
+    width: 100%;
+    padding: 5px 0;
+    margin: 0 auto;
+    border-bottom: 1px solid lightgray;
+}

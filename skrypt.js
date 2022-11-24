@@ -17,6 +17,34 @@ var fontfam = "Helveltica"
 var texttowrite
 var imgload
 var activeid = "hidden"
+var dropDown = document.getElementsByClassName("weather-dropdown")[0]
+var iconSize = 64
+var temperatura = 0
+var tempSize = 32
+var miasto
+function changeMiasto(){
+  miasto = document.getElementById("miasto").value
+}
+function tempSizeChange(){
+  tempSize = document.getElementById("temp-size").value
+}
+function tempChange(){
+  temperatura = document.getElementById("temperatura").value
+}
+function changeIconSize(){
+  iconSize = document.getElementById("icon-size").value
+}
+function dropDownShow(){
+  if(dropDown.style.display == "none"){
+    dropDown.style.display = "flex"
+  }else{
+    dropDown.style.display = "none"
+  }
+}
+function changeIcon(icon){
+  document.getElementById('weather-value').setAttribute("value", icon.id)
+  document.getElementById('weather-icon').src = icon.src
+}
 function hideToolBar(){
   document.getElementsByClassName("toolbar")[0].setAttribute("class", "toolbar animate__animated animate__fadeOutDownBig")
   document.getElementsByClassName("baropen")[0].setAttribute("class", "baropen animate__animated animate__fadeInUp")
@@ -244,6 +272,39 @@ function activeImage(){
   board.setAttribute("onmouseup", "imageUp()")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "")
+}
+function weatherClick(){
+  var myIcon = new Image()
+  myIcon.src = document.getElementById("weather-icon").src
+  cords1x = cordsx
+  cords1y = cordsy
+  ctx.drawImage(myIcon, 0, 0, myIcon.height, myIcon.width, cords1x, cords1y, iconSize, iconSize)
+  ctx.lineWidth = 1
+  ctx.strokeStyle = "#000000"
+  if(temperatura == 0){
+    ctx.fillStyle = "#ffffff"
+  } else if(temperatura>0 && temperatura <=10){
+    ctx.fillStyle = "#ffff00"
+  } else if(temperatura>10 && temperatura <=20){
+    ctx.fillStyle = "#ff7d00"
+  } else if(temperatura>20){
+    ctx.fillStyle = "#ff0000"
+  } else if(temperatura<0 && temperatura>=(-10)){
+    ctx.fillStyle = "#00ffff"
+  } else if(temperatura<(-10)){
+    ctx.fillStyle= "#0000ff"
+  }  
+  ctx.font = tempSize+"px "+fontfam;
+  ctx.globalAlpha = 1
+  ctx.fillText(temperatura+"°C", cords1x, cords1y+(iconSize+tempSize));
+  ctx.strokeText(temperatura+"°C", cords1x, cords1y+(iconSize+tempSize));
+  
+  if(document.getElementById("miasto-check").checked){
+    ctx.fillStyle = "#ffffff"
+    ctx.fillText(miasto, cords1x, cords1y+(iconSize+2*tempSize));
+    ctx.strokeText(miasto, cords1x, cords1y+(iconSize+2*tempSize));
+  }
+  
 }
 function activeWeather(){
   activeTool = "weather"

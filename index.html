@@ -38,15 +38,29 @@
     <input type="radio" name="wektor" id="wektor1" value="pion">
     <label for="wektor2">W poziomie:</label>
     <input type="radio" name="wektor" id="wektor2" value="poziomie" checked>
-    <select id="weather-type">
-        <option value="ladna">Ładna</option>
-        <option value="brzydka">Brzydka</option>
-    </select>
+    <div class="weather-dropdown-butt" id='weather-value' value="sun" onclick="dropDownShow()">
+        <img id='weather-icon' src="icons/sun.svg" height="64" width="64">
+    </div>
+    <div class="weather-dropdown">
+        <img onclick="changeIcon(this)" src="icons/sun.svg" height="64" width="64" id="sun">
+        <img onclick="changeIcon(this)" src="icons/partly-cloudy.svg" height="64" width="64" id="partly-cloudy">
+        <img onclick="changeIcon(this)" src="icons/cloudy.svg" height="64" width="64" id="cloudy">
+        <img onclick="changeIcon(this)" src="icons/night.svg" height="64" width="64" id="night">
+        <img onclick="changeIcon(this)" src="icons/cloudy-night.svg" height="64" width="64" id="cloudy-night">
+        <img onclick="changeIcon(this)" src="icons/rainy.svg" height="64" width="64" id="rainy">
+        <img onclick="changeIcon(this)" src="icons/snowy.svg" height="64" width="64" id="snowy">
+        <img onclick="changeIcon(this)" src="icons/storm.svg" height="64" width="64" id="storm">
+        <img onclick="changeIcon(this)" src="icons/foggy.svg" height="64" width="64" id="foggy">
+    </div>
+    <label for="icon-size">Wielkośc ikony</label>
+    <input type="number" name="" id="icon-size" min="0" value="64" onchange="changeIconSize()">
     <label for="temperatura">Temperatura:</label>
-    <input type="number" id="temperatura">
+    <input type="number" value="0" id="temperatura" onchange="tempChange()">
+    <label for="temp-size">Wielkość temperatury</label>
+    <input type="number" name="" id="temp-size" value="32" onchange="tempSizeChange()">
     <label for="miasto">Miasto</label>
     <input type="checkbox" id="miasto-check">
-    <input type="text" id="miasto">
+    <input type="text" id="miasto" onchange="changeMiasto()">
     <div class="baropen" onmouseenter="showToolBar()">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
             <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>

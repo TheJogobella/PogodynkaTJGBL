@@ -278,7 +278,7 @@ function weatherClick(){
   myIcon.src = document.getElementById("weather-icon").src
   cords1x = cordsx
   cords1y = cordsy
-  ctx.drawImage(myIcon, 0, 0, myIcon.height, myIcon.width, cords1x, cords1y, iconSize, iconSize)
+  ctx.drawImage(myIcon, 0, 0, myIcon.height*(board.width/(myIcon.width)), myIcon.width*(board.width/(myIcon.width)), cords1x, cords1y, iconSize, iconSize)
   ctx.lineWidth = 1
   ctx.strokeStyle = "#000000"
   if(temperatura == 0){
@@ -296,13 +296,13 @@ function weatherClick(){
   }  
   ctx.font = tempSize+"px "+fontfam;
   ctx.globalAlpha = 1
-  ctx.fillText(temperatura+"°C", cords1x, cords1y+(iconSize+tempSize));
-  ctx.strokeText(temperatura+"°C", cords1x, cords1y+(iconSize+tempSize));
+  ctx.fillText(temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
+  ctx.strokeText(temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
   
   if(document.getElementById("miasto-check").checked){
     ctx.fillStyle = "#ffffff"
-    ctx.fillText(miasto, cords1x, cords1y+(iconSize+2*tempSize));
-    ctx.strokeText(miasto, cords1x, cords1y+(iconSize+2*tempSize));
+    ctx.fillText(miasto, cords1x, cords1y+(parseInt(iconSize)/2+2*tempSize));
+    ctx.strokeText(miasto, cords1x, cords1y+(parseInt(iconSize)/2+2*tempSize));
   }
   
 }

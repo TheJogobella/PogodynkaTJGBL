@@ -161,7 +161,7 @@ function circleDown(){
 function circleUp(){
   cords2x =  cordsx
   cords2y =  cordsy
-  ctx.arc(cords1x, cords1y,  Math.sqrt(Math.pow((cords2x-cords1x), 2)+Math.pow((cords2y-cords1y), 2)), 0, 2 * Math.PI);
+  ctx.arc(cords1x, cords1y, Math.sqrt(Math.pow((cords2x-cords1x), 2)+Math.pow((cords2y-cords1y), 2)), 0, 2 * Math.PI);
   ctx.fill()
   ctx.globalAlpha = alfa
   ctx.stroke();
@@ -176,8 +176,8 @@ function activeCircle(){
 }
 function pencilDown(){
   ctx.beginPath();
-  ctx.fillStyle = rbgcolorbg
-  ctx.globalAlpha = alfabg
+  ctx.fillStyle = rbgcolor
+  ctx.globalAlpha = alfa
   cords1x =  cordsx
   cords1y =  cordsy
   ctx.fillRect(cords1x-(lineW/2), cords1y-(lineW/2), lineW, lineW);
@@ -201,8 +201,8 @@ function activePencil(){
 }
 function brushDown(){
   ctx.beginPath();
-  ctx.fillStyle = rbgcolorbg
-  ctx.globalAlpha = alfabg
+  ctx.fillStyle = rbgcolor
+  ctx.globalAlpha = alfa
   cords1x =  cordsx
   cords1y =  cordsy
   ctx.arc(cords1x, cords1y, lineW/2, 0, 2*Math.PI);
@@ -313,6 +313,37 @@ function activeWeather(){
   board.setAttribute("onmouseup", "")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "weatherClick()")
+}
+function shapeClick(){
+  ctx.beginPath();
+  cords1x =  cordsx
+  cords1y =  cordsy
+  ctx.moveTo(cords1x, cords1y);
+  board.setAttribute("onclick", "continueClick()")
+}
+function continueClick(){
+  cords2x = cordsx
+  cords2y = cordsy
+  ctx.lineTo(cords2x, cords2y)
+}
+function endShape(){
+  ctx.lineTo(cords1x, cords1y)
+  ctx.fillStyle = rbgcolorbg
+  ctx.globalAlpha = alfabg
+  ctx.fill()
+  ctx.lineWidth = lineW
+  ctx.strokeStyle = rbgcolor
+  ctx.globalAlpha = alfa
+  ctx.stroke()
+  board.setAttribute("onclick", "shapeClick()")
+}
+function activeShape(){
+  activeTool = "shape"
+  changeActiveColor()
+  board.setAttribute("onmousedown", "")
+  board.setAttribute("onmouseup", "")
+  board.setAttribute("onmousemove", "")
+  board.setAttribute("onclick", "shapeClick()")
 }
 document.getElementById('inp').onchange = function(e) {
   var img = new Image();

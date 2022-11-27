@@ -14,58 +14,111 @@
 </head>
 <body>
     <canvas id="canvas"></canvas>  
-    <input type="file" id="inp">
-    <input type="color" id="rgbcol" onchange="changeColor()">
-    <label for="alfa">Przezroczystoć (0 dla przezroczystego, 1 dla pełnego):</label>
-    <input type="range" min="0" max="1" id="alfa1" onchange="changeAlfa1()" value="1" step="0.01">
-    <input type="number" id="alfa2" min="0" max="1" onchange="changeAlfa2()" value="1" step="0.01">
-    <input type="color" id="rgbcolbg" onchange="changeColorBg()">
-    <label for="alfa">Przezroczystoć (0 dla przezroczystego, 1 dla pełnego):</label>
-    <input type="range" min="0" max="1" id="alfa1bg" onchange="changeAlfa1bg()" value="1" step="0.01">
-    <input type="number" id="alfa2bg" min="0" max="1" onchange="changeAlfa2bg()" value="1" step="0.01">
-    <label for="width">Grubość:</label>
-    <input type="number" id="width" min="1" max="500" onchange="changeWidth()">
-    <label for="fsize" >Wielkość czcionki:</label>
-    <input id="fsize" type="number" min="1" max="500" value="12" onchange="changeFsize()">
-    <label for="fontfam">Czcionka:</label>
-    <input type="text" id="fontfam" onchange="changeFontFam()">
-    <label for="texttowrite">Tekst:</label>
-    <input type="text" id="texttowrite" onchange="changeTextToWrite()">
-    <input type="file" id="imagesend">
-    <label for="proporcje">Zachowaj proporcje</label>
-    <input type="checkbox" id="proporcje" value="true">
-    <label for="wektor1">W pionie:</label>
-    <input type="radio" name="wektor" id="wektor1" value="pion">
-    <label for="wektor2">W poziomie:</label>
-    <input type="radio" name="wektor" id="wektor2" value="poziomie" checked>
-    <div class="weather-dropdown-butt" id='weather-value' value="sun" onclick="dropDownShow()">
-        <img id='weather-icon' src="icons/sun.svg" height="64" width="64">
+    <div class="tool-options-header">
+        <h1 id="tool-options-h1">Wybierz narzędzie, aby zobaczyć jego opcje</h1>
+        <div id="endShape">
+            <button onclick="endShape()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                </svg>
+            </button>
+        </div>
     </div>
-    <div class="weather-dropdown">
-        <img onclick="changeIcon(this)" src="icons/sun.svg" height="64" width="64" id="sun">
-        <img onclick="changeIcon(this)" src="icons/partly-cloudy.svg" height="64" width="64" id="partly-cloudy">
-        <img onclick="changeIcon(this)" src="icons/cloudy.svg" height="64" width="64" id="cloudy">
-        <img onclick="changeIcon(this)" src="icons/night.svg" height="64" width="64" id="night">
-        <img onclick="changeIcon(this)" src="icons/cloudy-night.svg" height="64" width="64" id="cloudy-night">
-        <img onclick="changeIcon(this)" src="icons/rainy.svg" height="64" width="64" id="rainy">
-        <img onclick="changeIcon(this)" src="icons/snowy.svg" height="64" width="64" id="snowy">
-        <img onclick="changeIcon(this)" src="icons/storm.svg" height="64" width="64" id="storm">
-        <img onclick="changeIcon(this)" src="icons/foggy.svg" height="64" width="64" id="foggy">
+    <div class="tool-options">
+        <div id="image-div">
+            <h2>Zdjęcie</h2>
+            <input type="file" id="imagesend">
+        </div>
+        <div id="text-div">
+            <h2>Tekst</h2>
+            <input type="text" id="texttowrite" onchange="changeTextToWrite()">
+        </div>
+        <div id="color-div">
+            <h2 id="color-h2">Kolor</h2>
+            <h3 id="rgb-h3">RGB</h3>
+            <input type="color" id="rgbcol" onchange="changeColor()">
+            <h3 id="trans-h3">Transparentność</h3>
+            <input type="range" min="0" max="1" id="alfa1" onchange="changeAlfa1()" value="1" step="0.01">
+            <input type="number" id="alfa2" min="0" max="1" onchange="changeAlfa2()" value="1" step="0.01">
+            <br>
+            <small>1 dla 100% transparentności, 0 dla 0%</small>
+        </div>
+        <div id="bg-div">
+            <h2 id="bg-h2">Kolor wypełnienia</h2>
+            <h3>RGB</h3>
+            <input type="color" id="rgbcolbg" onchange="changeColorBg()">
+            <h3>Transparentność</h3>
+            <input type="range" min="0" max="1" id="alfa1bg" onchange="changeAlfa1bg()" value="1" step="0.01">
+            <input type="number" id="alfa2bg" min="0" max="1" onchange="changeAlfa2bg()" value="1" step="0.01">
+            <br>
+            <small>1 dla 100% transparentności, 0 dla 0%</small>
+        </div>
+        <div id="width-div">
+            <h2>Grubość</h2>
+            <input type="number" id="width" min="1" max="500" onchange="changeWidth()" value="1">
+        </div>
+        <div id="form-div">
+            <h2>Formatowanie czcionki</h2>
+            <h3>Wielkość czcionki</h3>
+            <input id="fsize" type="number" min="1" max="500" value="12" onchange="changeFsize()">
+            <h3>Czcionka</h3>
+            <input type="text" id="fontfam" onchange="changeFontFam()">
+        </div>
+        <div id="imgsize-div">
+            <h2>Proporcje</h2>
+            <div class="proporcje">
+                <h3>Zachowaj propocje</h3>
+                <input type="checkbox" id="proporcje" onchange="checkProps()">
+            </div>
+            <div class="proporcje">
+                <h3>W pionie</h3>
+                <input type="radio" name="wektor" id="wektor1" value="pion" disabled>
+            </div>  
+            <div class="proporcje">
+                <h3>W poziomie</h3>
+                <input type="radio" name="wektor" id="wektor2" value="poziomie" checked disabled>
+            </div>
+        </div>
+        <div id="icon-div">
+            <h2>Ikona</h2>
+            <h3>Ikona pogody</h3>
+            <div class="weather-dropdown-butt" id='weather-value' value="sun" onclick="dropDownShow()">
+                <img id='weather-icon' src="icons/sun.svg" height="64" width="64">
+            </div>
+            <div class="weather-dropdown" onmouseleave="dropdownLeave()">
+                <img onclick="changeIcon(this)" src="icons/sun.svg" height="64" width="64" id="sun">
+                <img onclick="changeIcon(this)" src="icons/partly-cloudy.svg" height="64" width="64" id="partly-cloudy">
+                <img onclick="changeIcon(this)" src="icons/cloudy.svg" height="64" width="64" id="cloudy">
+                <img onclick="changeIcon(this)" src="icons/night.svg" height="64" width="64" id="night">
+                <img onclick="changeIcon(this)" src="icons/cloudy-night.svg" height="64" width="64" id="cloudy-night">
+                <img onclick="changeIcon(this)" src="icons/rainy.svg" height="64" width="64" id="rainy">
+                <img onclick="changeIcon(this)" src="icons/snowy.svg" height="64" width="64" id="snowy">
+                <img onclick="changeIcon(this)" src="icons/storm.svg" height="64" width="64" id="storm">
+                <img onclick="changeIcon(this)" src="icons/foggy.svg" height="64" width="64" id="foggy">
+            </div>
+            <h3>Wielkość</h3>
+            <input type="number" name="" id="icon-size" min="0" value="64" onchange="changeIconSize()">
+        </div>
+        <div id="temper-div">
+            <h2>Temperatura</h2>
+            <h3>Celcjusze</h3>
+            <input type="number" value="0" id="temperatura" onchange="tempChange()">
+            <h3>Wielkość czcionki temperatury i miasta</h3>
+            <input type="number" name="" id="temp-size" value="32" onchange="tempSizeChange()">
+        </div>
+        <div id="miasto-div">
+            <div class="proporcje">
+                <h2>Miasto</h2>
+                <input type="checkbox" id="miasto-check">
+            </div>
+            <input type="text" id="miasto" onchange="changeMiasto()" disabled>
+        </div>
+        <h2>Inne</h2>
+        <h3>Tło</h3>
+        <input type="file" id="inp">
+        <h3>Zapisz</h3>
+        <button onclick="DownloadCanvasAsImage()">Zapisz swoją prace</button>
     </div>
-    <label for="icon-size">Wielkośc ikony</label>
-    <input type="number" name="" id="icon-size" min="0" value="64" onchange="changeIconSize()">
-    <label for="temperatura">Temperatura:</label>
-    <input type="number" value="0" id="temperatura" onchange="tempChange()">
-    <label for="temp-size">Wielkość temperatury</label>
-    <input type="number" name="" id="temp-size" value="32" onchange="tempSizeChange()">
-    <label for="miasto">Miasto</label>
-    <input type="checkbox" id="miasto-check">
-    <input type="text" id="miasto" onchange="changeMiasto()">
-    <button onclick="endShape()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-        </svg>
-    </button>
     <div class="baropen" onmouseenter="showToolBar()">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
             <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>

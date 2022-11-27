@@ -1,5 +1,9 @@
+body{
+    background-color: darkgray !important;
+}
 #canvas{
     max-width: 100%;
+    background-color: white;
 }
 .toolbar{
     box-shadow: 0px 0px 20px 5px black;
@@ -37,6 +41,15 @@
     text-align: center;
     color: white;
 }
+.weather-dropdown-butt{
+    width: 100px;
+    border: 1px solid dimgray;
+}
+.weather-dropdown-butt img{
+    width: 100%;
+    padding: 5px 0;
+    margin: 0 auto;
+}
 .weather-dropdown{
     position: absolute;
     display: none;
@@ -51,4 +64,70 @@
     padding: 5px 0;
     margin: 0 auto;
     border-bottom: 1px solid lightgray;
+}
+.tool-options-header{
+    width: 100%;
+    background-color: gray;
+    padding: 10px 20px;
+    color: white;
+    display: flex;
+}
+#endShape{
+    width: 50%;
+    text-align: right;
+}
+.tool-options-header h1{
+    width: 50%;
+    font-size: 150%;
+}
+.tool-options{
+    width: 100%;
+    color: white;
+    padding: 30px 20px 15vh 20px;
+    background-color: darkgray;
+}
+.input-with-d{
+    display: flex;
+}
+.tool-options h3{
+    font-size: 120%;
+}
+#color-div{
+    display: none;
+}
+#bg-div{
+    display: none;
+}
+#width-div{
+    display: none;
+}
+#form-div{
+    display: none;
+}
+#text-div{
+    display: none;
+}
+#image-div{
+    display: none;
+}
+.proporcje{
+    display: flex;
+}
+.proporcje h3{
+    margin-right: 10px;
+}
+#imgsize-div{
+    display: none;
+}
+#icon-div{
+    display: none;
+}
+#temper-div{
+    display: none;
+}
+#miasto-div{
+    display: none;
+}
+#endShape{
+    display: none;
 }

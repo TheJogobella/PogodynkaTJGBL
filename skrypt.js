@@ -22,6 +22,16 @@ var iconSize = 64
 var temperatura = 0
 var tempSize = 32
 var miasto
+document.getElementById("proporcje").addEventListener("change", (event) => {
+  document.getElementById("wektor1").disabled = !event.target.checked;
+  document.getElementById("wektor2").disabled = !event.target.checked;
+}, false);
+document.getElementById("miasto-check").addEventListener("change", (event) => {
+  document.getElementById("miasto").disabled = !event.target.checked;
+}, false);
+function changeToolName(){
+  document.getElementById("tool-options-h1").innerHTML = "Opcje dla narzędzia: "+activeTool
+}
 function changeMiasto(){
   miasto = document.getElementById("miasto").value
 }
@@ -33,6 +43,9 @@ function tempChange(){
 }
 function changeIconSize(){
   iconSize = document.getElementById("icon-size").value
+}
+function dropdownLeave(){
+  dropDown.style.display = "none"
 }
 function dropDownShow(){
   if(dropDown.style.display == "none"){
@@ -123,6 +136,18 @@ function activeLine(){
   board.setAttribute("onmouseup", "lineUp()")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "")
+  changeToolName()
+  document.getElementById("color-div").style.display="block"
+  document.getElementById("bg-div").style.display="none"
+  document.getElementById("width-div").style.display="block"
+  document.getElementById("form-div").style.display="none"
+  document.getElementById("text-div").style.display="none"
+  document.getElementById("image-div").style.display="none"
+  document.getElementById("imgsize-div").style.display="none"
+  document.getElementById("icon-div").style.display="none"
+  document.getElementById("temper-div").style.display="none"
+  document.getElementById("miasto-div").style.display="none"
+  document.getElementById("endShape").style.display="none"
 }
 function squareDown(){
   ctx.beginPath();
@@ -148,6 +173,18 @@ function activeSquare(){
   board.setAttribute("onmouseup", "squareUp()")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "")
+  changeToolName()
+  document.getElementById("color-div").style.display="block"
+  document.getElementById("bg-div").style.display="block"
+  document.getElementById("width-div").style.display="block"
+  document.getElementById("form-div").style.display="none"
+  document.getElementById("text-div").style.display="none"
+  document.getElementById("image-div").style.display="none"
+  document.getElementById("imgsize-div").style.display="none"
+  document.getElementById("icon-div").style.display="none"
+  document.getElementById("temper-div").style.display="none"
+  document.getElementById("miasto-div").style.display="none"
+  document.getElementById("endShape").style.display="none"
 }
 function circleDown(){
   ctx.beginPath();
@@ -173,6 +210,18 @@ function activeCircle(){
   board.setAttribute("onmouseup", "circleUp()")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "")
+  changeToolName()
+  document.getElementById("color-div").style.display="block"
+  document.getElementById("bg-div").style.display="block"
+  document.getElementById("width-div").style.display="block"
+  document.getElementById("form-div").style.display="none"
+  document.getElementById("text-div").style.display="none"
+  document.getElementById("image-div").style.display="none"
+  document.getElementById("imgsize-div").style.display="none"
+  document.getElementById("icon-div").style.display="none"
+  document.getElementById("temper-div").style.display="none"
+  document.getElementById("miasto-div").style.display="none"
+  document.getElementById("endShape").style.display="none"
 }
 function pencilDown(){
   ctx.beginPath();
@@ -198,6 +247,18 @@ function activePencil(){
   board.setAttribute("onmouseup", "pencilUp()")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "")
+  changeToolName()
+  document.getElementById("color-div").style.display="block"
+  document.getElementById("bg-div").style.display="none"
+  document.getElementById("width-div").style.display="block"
+  document.getElementById("form-div").style.display="none"
+  document.getElementById("text-div").style.display="none"
+  document.getElementById("image-div").style.display="none"
+  document.getElementById("imgsize-div").style.display="none"
+  document.getElementById("icon-div").style.display="none"
+  document.getElementById("temper-div").style.display="none"
+  document.getElementById("miasto-div").style.display="none"
+  document.getElementById("endShape").style.display="none"
 }
 function brushDown(){
   ctx.beginPath();
@@ -226,6 +287,18 @@ function activeBrush(){
   board.setAttribute("onmouseup", "brushUp()")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "")
+  changeToolName()
+  document.getElementById("color-div").style.display="block"
+  document.getElementById("bg-div").style.display="none"
+  document.getElementById("width-div").style.display="block"
+  document.getElementById("form-div").style.display="none"
+  document.getElementById("text-div").style.display="none"
+  document.getElementById("image-div").style.display="none"
+  document.getElementById("imgsize-div").style.display="none"
+  document.getElementById("icon-div").style.display="none"
+  document.getElementById("temper-div").style.display="none"
+  document.getElementById("miasto-div").style.display="none"
+  document.getElementById("endShape").style.display="none"
 }
 function textClick(){
   ctx.beginPath();
@@ -247,6 +320,18 @@ function activeText(){
   board.setAttribute("onmouseup", "")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "textClick()")
+  changeToolName()
+  document.getElementById("color-div").style.display="block"
+  document.getElementById("bg-div").style.display="block"
+  document.getElementById("width-div").style.display="block"
+  document.getElementById("form-div").style.display="block"
+  document.getElementById("text-div").style.display="block"
+  document.getElementById("image-div").style.display="none"
+  document.getElementById("imgsize-div").style.display="none"
+  document.getElementById("icon-div").style.display="none"
+  document.getElementById("temper-div").style.display="none"
+  document.getElementById("miasto-div").style.display="none"
+  document.getElementById("endShape").style.display="none"
 }
 function imageDown(){
   imgload= new Image()
@@ -272,6 +357,18 @@ function activeImage(){
   board.setAttribute("onmouseup", "imageUp()")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "")
+  changeToolName()
+  document.getElementById("color-div").style.display="none"
+  document.getElementById("bg-div").style.display="none"
+  document.getElementById("width-div").style.display="none"
+  document.getElementById("form-div").style.display="none"
+  document.getElementById("text-div").style.display="none"
+  document.getElementById("image-div").style.display="block"
+  document.getElementById("imgsize-div").style.display="block"
+  document.getElementById("icon-div").style.display="none"
+  document.getElementById("temper-div").style.display="none"
+  document.getElementById("miasto-div").style.display="none"
+  document.getElementById("endShape").style.display="none"
 }
 function weatherClick(){
   var myIcon = new Image()
@@ -313,6 +410,18 @@ function activeWeather(){
   board.setAttribute("onmouseup", "")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "weatherClick()")
+  changeToolName()
+  document.getElementById("color-div").style.display="none"
+  document.getElementById("bg-div").style.display="none"
+  document.getElementById("width-div").style.display="none"
+  document.getElementById("form-div").style.display="none"
+  document.getElementById("text-div").style.display="none"
+  document.getElementById("image-div").style.display="none"
+  document.getElementById("imgsize-div").style.display="none"
+  document.getElementById("icon-div").style.display="block"
+  document.getElementById("temper-div").style.display="block"
+  document.getElementById("miasto-div").style.display="block"
+  document.getElementById("endShape").style.display="none"
 }
 function shapeClick(){
   ctx.beginPath();
@@ -344,6 +453,18 @@ function activeShape(){
   board.setAttribute("onmouseup", "")
   board.setAttribute("onmousemove", "")
   board.setAttribute("onclick", "shapeClick()")
+  changeToolName()
+  document.getElementById("color-div").style.display="block"
+  document.getElementById("bg-div").style.display="block"
+  document.getElementById("width-div").style.display="block"
+  document.getElementById("form-div").style.display="none"
+  document.getElementById("text-div").style.display="none"
+  document.getElementById("image-div").style.display="none"
+  document.getElementById("imgsize-div").style.display="none"
+  document.getElementById("icon-div").style.display="none"
+  document.getElementById("temper-div").style.display="none"
+  document.getElementById("miasto-div").style.display="none"
+  document.getElementById("endShape").style.display="block"
 }
 document.getElementById('inp').onchange = function(e) {
   var img = new Image();
@@ -358,6 +479,14 @@ function drawImage() {
 }
 function failedImage() {
   console.error("The provided file couldn't be loaded as an Image media");
+}
+function DownloadCanvasAsImage(){
+  let downloadLink = document.createElement('a');
+  downloadLink.setAttribute('download', 'pogoda.png');
+  let dataURL = canvas.toDataURL('image/png');
+  let url = dataURL.replace(/^data:image\/png/,'data:application/octet-stream');
+  downloadLink.setAttribute('href', url);
+  downloadLink.click();
 }
 board.addEventListener("mousemove", updateDisplay, false);
 board.addEventListener("mouseenter", updateDisplay, false);

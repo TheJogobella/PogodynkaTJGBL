@@ -131,3 +131,11 @@ body{
 #endShape{
     display: none;
 }
+button{
+    background: none;
+    color: white;
+    border: 2px solid white;
+}
+input[type="file"]{
+    display: none;
+}

@@ -1,12 +1,19 @@
 var activeTool = null;
 const board = document.getElementById('canvas');
 const ctx = board.getContext('2d');
+var displaySquare
 var cordsx
 var cordsy
 var cords1x
 var cords1y
 var cords2x
 var cords2y
+var truex
+var truey
+var true1x
+var true1y
+var true2x
+var true2y
 var lineW = 1
 var rbgcolor = "#000000"
 var rbgcolorbg = "#000000"
@@ -22,6 +29,7 @@ var iconSize = 64
 var temperatura = 0
 var tempSize = 32
 var miasto
+var borderW
 document.getElementById("proporcje").addEventListener("change", (event) => {
   document.getElementById("wektor1").disabled = !event.target.checked;
   document.getElementById("wektor2").disabled = !event.target.checked;
@@ -113,6 +121,11 @@ function updateDisplay(event) {
     cordsx = event.pageX
     cordsy = event.pageY
   }
+  
+}
+function updateCords(event){
+  truex = event.pageX
+  truey = event.pageY
 }
 function lineDown(){
   ctx.beginPath();
@@ -150,6 +163,18 @@ function activeLine(){
   document.getElementById("endShape").style.display="none"
 }
 function squareDown(){
+  board.setAttribute("onmousemove", "squareMove()")
+  board.setAttribute("onmouseleave", "squareLeave()")
+  displaySquare= document.createElement("div")
+  true1x = truex
+  true1y = truey
+  if(board.width>window.innerWidth){
+    borderW = lineW*((window.innerWidth*0.99)/board.width)
+  } else{
+    borderW = lineW
+  }
+  displaySquare.style = "position: absolute; border: "+borderW+"px solid "+rbgcolor+"; background-color: "+rbgcolorbg+";"
+  document.body.appendChild(displaySquare)
   ctx.beginPath();
   ctx.strokeStyle = rbgcolor
   ctx.fillStyle = rbgcolorbg
@@ -158,13 +183,56 @@ function squareDown(){
   cords1x =  cordsx
   cords1y =  cordsy
 }
+function squareMove(){
+  true2x = truex
+  true2y = truey
+  if(true2y-true1y>0){
+    displaySquare.style.height = true2y-true1y+"px"
+    displaySquare.style.top = true1y+"px"
+  } else {
+    displaySquare.style.top = true2y+"px"
+    displaySquare.style.height = true1y-true2y+"px"
+  }
+  if(true2x-true1x>0){
+    displaySquare.style.width = true2x-true1x+"px"
+    displaySquare.style.left = true1x+"px"
+  }else{
+    displaySquare.style.width = true1x-true2x+"px"
+    displaySquare.style.left = true2x+"px"
+  }
+}
+function squareLeave(){
+  if(board.width>window.innerWidth){
+    if(truex>=window.innerWidth*0.99-5){
+      board.setAttribute("onmousemove", "")
+      displaySquare.remove()
+    }else if(truey>=board.height*((window.innerWidth*0.99)/board.width)-5){
+      board.setAttribute("onmousemove", "")
+      displaySquare.remove()
+    }
+  }else if(truex>=board.width-5){
+    board.setAttribute("onmousemove", "")
+    displaySquare.remove()
+  }else if(truey>=board.height-5){
+    board.setAttribute("onmousemove", "")
+    displaySquare.remove()
+  }else if(truey<=15){
+    board.setAttribute("onmousemove", "")
+    displaySquare.remove()
+  }else if(truex<=15){
+    board.setAttribute("onmousemove", "")
+    displaySquare.remove()
+  }
+}
 function squareUp(){
+  board.setAttribute("onmousemove", "")
   cords2x =  cordsx
   cords2y =  cordsy
   ctx.fillRect(cords1x, cords1y, cords2x-cords1x, cords2y-cords1y);
   ctx.globalAlpha = alfa
   ctx.rect(cords1x, cords1y, cords2x-cords1x, cords2y-cords1y)
   ctx.stroke()
+  displaySquare.remove()
 }
 function activeSquare(){
   activeTool = "square"
@@ -503,3 +571,6 @@ function DownloadCanvasAsImage(){
 board.addEventListener("mousemove", updateDisplay, false);
 board.addEventListener("mouseenter", updateDisplay, false);
 board.addEventListener("mouseleave", updateDisplay, false);
+document.body.addEventListener("mousemove", updateCords, false);
+document.body.addEventListener("mouseenter", updateCords, false);
+document.body.addEventListener("mouseleave", updateCords, false);

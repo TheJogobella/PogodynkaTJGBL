@@ -379,7 +379,7 @@ function weatherClick(){
   ctx.globalAlpha = alfabg
   ctx.fillRect(cords1x-5, cords1y-5, parseInt(iconSize)+10, parseInt(iconSize)/3+parseInt(tempSize)+10)
   ctx.globalAlpha = 1
-  ctx.drawImage(myIcon, 0, 0, myIcon.width*(board.width/(myIcon.width)), myIcon.height*(board.width/(myIcon.width)), cords1x, cords1y, iconSize, iconSize)
+  ctx.drawImage(myIcon, 0, 0, myIcon.height*(board.width/(myIcon.width)), myIcon.width*(board.width/(myIcon.width)), cords1x, cords1y, iconSize, iconSize)
   ctx.lineWidth = 1
   ctx.strokeStyle = "#000000"
   if(temperatura == 0){

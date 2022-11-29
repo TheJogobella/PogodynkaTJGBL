@@ -375,7 +375,11 @@ function weatherClick(){
   myIcon.src = document.getElementById("weather-icon").src
   cords1x = cordsx
   cords1y = cordsy
-  ctx.drawImage(myIcon, 0, 0, myIcon.height*(board.width/(myIcon.width)), myIcon.width*(board.width/(myIcon.width)), cords1x, cords1y, iconSize, iconSize)
+  ctx.fillStyle = rbgcolorbg
+  ctx.globalAlpha = alfabg
+  ctx.fillRect(cords1x-5, cords1y-5, parseInt(iconSize)+10, parseInt(iconSize)/3+parseInt(tempSize)+10)
+  ctx.globalAlpha = 1
+  ctx.drawImage(myIcon, 0, 0, myIcon.width*(board.width/(myIcon.width)), myIcon.height*(board.width/(myIcon.width)), cords1x, cords1y, iconSize, iconSize)
   ctx.lineWidth = 1
   ctx.strokeStyle = "#000000"
   if(temperatura == 0){
@@ -391,15 +395,17 @@ function weatherClick(){
   } else if(temperatura<(-10)){
     ctx.fillStyle= "#0000ff"
   }  
-  ctx.font = tempSize+"px "+fontfam;
+  ctx.font = tempSize+"px Arial";
   ctx.globalAlpha = 1
-  ctx.fillText(temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
-  ctx.strokeText(temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
+  
   
   if(document.getElementById("miasto-check").checked){
     ctx.fillStyle = "#ffffff"
-    ctx.fillText(miasto, cords1x, cords1y+(parseInt(iconSize)/2+2*tempSize));
-    ctx.strokeText(miasto, cords1x, cords1y+(parseInt(iconSize)/2+2*tempSize));
+    ctx.fillText(miasto+' '+temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
+    ctx.strokeText(miasto+' '+temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
+  }else{
+    ctx.fillText(temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
+    ctx.strokeText(temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
   }
   
 }
@@ -412,7 +418,7 @@ function activeWeather(){
   board.setAttribute("onclick", "weatherClick()")
   changeToolName()
   document.getElementById("color-div").style.display="none"
-  document.getElementById("bg-div").style.display="none"
+  document.getElementById("bg-div").style.display="block"
   document.getElementById("width-div").style.display="none"
   document.getElementById("form-div").style.display="none"
   document.getElementById("text-div").style.display="none"
@@ -427,12 +433,18 @@ function shapeClick(){
   ctx.beginPath();
   cords1x =  cordsx
   cords1y =  cordsy
+  ctx.strokeStyle = rbgcolor
+  ctx.globalAlpha = alfa
+  ctx.fillRect (cords1x, cords1y, 1, 1)
   ctx.moveTo(cords1x, cords1y);
   board.setAttribute("onclick", "continueClick()")
 }
 function continueClick(){
   cords2x = cordsx
   cords2y = cordsy
+  ctx.strokeStyle = rbgcolor
+  ctx.globalAlpha = alfa
+  ctx.fillRect (cords2x, cords2y, 1, 1)
   ctx.lineTo(cords2x, cords2y)
 }
 function endShape(){

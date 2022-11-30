@@ -443,9 +443,14 @@ function weatherClick(){
   myIcon.src = document.getElementById("weather-icon").src
   cords1x = cordsx
   cords1y = cordsy
+  ctx.font = tempSize+"px Arial";
   ctx.fillStyle = rbgcolorbg
   ctx.globalAlpha = alfabg
-  ctx.fillRect(cords1x-5, cords1y-5, parseInt(iconSize)+10, parseInt(iconSize)/3+parseInt(tempSize)+10)
+  if(document.getElementById("miasto-check").checked){
+    ctx.fillRect(cords1x+ctx.measureText(miasto+" ").width-5, cords1y+parseInt(iconSize)/3, ctx.measureText(temperatura+"°C").width+10, parseInt(tempSize)+10)
+  }else{
+    ctx.fillRect(cords1x-5, cords1y+parseInt(iconSize)/3, ctx.measureText(temperatura+"°C").width+10, parseInt(tempSize)+10)
+  }
   ctx.globalAlpha = 1
   ctx.drawImage(myIcon, 0, 0, myIcon.height*(board.width/(myIcon.width)), myIcon.width*(board.width/(myIcon.width)), cords1x, cords1y, iconSize, iconSize)
   ctx.lineWidth = 1
@@ -453,22 +458,20 @@ function weatherClick(){
   if(temperatura == 0){
     ctx.fillStyle = "#ffffff"
   } else if(temperatura>0 && temperatura <=10){
-    ctx.fillStyle = "#ffff00"
+    ctx.fillStyle = "rgb(255, "+(255-(temperatura*0.1*(255-125)))+", "+(255-(temperatura*0.1*255))+")"
   } else if(temperatura>10 && temperatura <=20){
-    ctx.fillStyle = "#ff7d00"
+    ctx.fillStyle = "rgb(255, "+(125-(temperatura-10)*0.1*125)+", 0)"
   } else if(temperatura>20){
     ctx.fillStyle = "#ff0000"
   } else if(temperatura<0 && temperatura>=(-10)){
-    ctx.fillStyle = "#00ffff"
+    ctx.fillStyle = "rgb("+(255-(0-(temperatura))*0.1*255)+", "+(255-(0-(temperatura))*0.1*255)+", 255)"
   } else if(temperatura<(-10)){
     ctx.fillStyle= "#0000ff"
   }  
-  ctx.font = tempSize+"px Arial";
   ctx.globalAlpha = 1
   
   
   if(document.getElementById("miasto-check").checked){
-    ctx.fillStyle = "#ffffff"
     ctx.fillText(miasto+' '+temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
     ctx.strokeText(miasto+' '+temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
   }else{

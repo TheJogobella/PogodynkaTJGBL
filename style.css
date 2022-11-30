@@ -13,7 +13,7 @@ body{
 #canvas{
     max-width: 100%;
     background-color: white;
-    cursor: url(icons/pencil.svg) 16 16, default;
+    cursor: default;
 }
 .toolbar{
     box-shadow: 0px 0px 20px 5px black;

@@ -446,13 +446,16 @@ function weatherClick(){
   ctx.font = tempSize+"px Arial";
   ctx.fillStyle = rbgcolorbg
   ctx.globalAlpha = alfabg
+  myIcon.width = iconSize
+  myIcon.height = iconSize
   if(document.getElementById("miasto-check").checked){
-    ctx.fillRect(cords1x+ctx.measureText(miasto+" ").width-5, cords1y+parseInt(iconSize)/3, ctx.measureText(temperatura+"°C").width+10, parseInt(tempSize)+10)
+    ctx.fillRect(cords1x+ctx.measureText(miasto+" ").width-5, cords1y+parseInt(iconSize)*1.25+10, ctx.measureText(temperatura+"°C").width+10, parseInt(tempSize)+10)
   }else{
-    ctx.fillRect(cords1x-5, cords1y+parseInt(iconSize)/3, ctx.measureText(temperatura+"°C").width+10, parseInt(tempSize)+10)
+    ctx.fillRect(cords1x-5, cords1y+parseInt(iconSize)*1.25+10, ctx.measureText(temperatura+"°C").width+10, parseInt(tempSize)+10)
   }
+  console.log(myIcon)
   ctx.globalAlpha = 1
-  ctx.drawImage(myIcon, 0, 0, myIcon.height*(board.width/(myIcon.width)), myIcon.width*(board.width/(myIcon.width)), cords1x, cords1y, iconSize, iconSize)
+ctx.drawImage(myIcon, 0, 0, board.width, board.width, cords1x, cords1y, iconSize*2, iconSize*2)
   ctx.lineWidth = 1
   ctx.strokeStyle = "#000000"
   if(temperatura == 0){
@@ -472,11 +475,11 @@ function weatherClick(){
   
   
   if(document.getElementById("miasto-check").checked){
-    ctx.fillText(miasto+' '+temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
-    ctx.strokeText(miasto+' '+temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
+    ctx.fillText(miasto+' '+temperatura+"°C", cords1x, cords1y+parseInt(iconSize)*1.25+parseInt(tempSize)+5);
+    ctx.strokeText(miasto+' '+temperatura+"°C", cords1x, cords1y+parseInt(iconSize)*1.25+parseInt(tempSize)+5);
   }else{
-    ctx.fillText(temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
-    ctx.strokeText(temperatura+"°C", cords1x, cords1y+parseInt(iconSize)/3+parseInt(tempSize));
+    ctx.fillText(temperatura+"°C", cords1x, cords1y+parseInt(iconSize)*1.25+parseInt(tempSize)+5);
+    ctx.strokeText(temperatura+"°C", cords1x, cords1y+parseInt(iconSize)*1.25+parseInt(tempSize)+5);
   }
   
 }
